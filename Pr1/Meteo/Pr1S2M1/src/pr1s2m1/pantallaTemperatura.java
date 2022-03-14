@@ -37,7 +37,13 @@ public class pantallaTemperatura extends javax.swing.JFrame implements Observer{
         System.out.println("OBSERVABLE pantallaTemperatura: La temperatura es: " + gradosCentigrados + " grados centígrados o " + gradosFahrenheit);
     }
 
+    public double getFahrenheit(){
+        return gradosFahrenheit;
+    }
     
+    public double getCelsius(){
+        return gradosCentigrados;
+    }
 
 
     /**

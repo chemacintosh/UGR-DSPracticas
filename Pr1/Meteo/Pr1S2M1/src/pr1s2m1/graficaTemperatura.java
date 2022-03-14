@@ -68,6 +68,20 @@ public class graficaTemperatura extends javax.swing.JFrame implements Observer{
         System.out.println("OBSERVABLE graficaTemperatura: Las temperaturas se han actualizado y son: " + temperaturas);
     }
     
+    
+    void pintarGrafica(){
+        
+
+        XYDataset ds = crearDataset();
+        JFreeChart chart = ChartFactory.createXYLineChart("Test Chart",
+                "x", "y", ds, PlotOrientation.VERTICAL, true, true,
+                false);
+
+        ChartPanel cp = new ChartPanel(chart);
+
+        jFrame1.getContentPane().add(cp);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,11 +166,12 @@ public static void main(String args[]) {
         ob = new ObsHebra();
         grafica = new graficaTemperatura();
         ob.addObserver(grafica);
+        
+        grafica.pintarGrafica();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new graficaTemperatura().setVisible(true);
-                
                 
                 
             }

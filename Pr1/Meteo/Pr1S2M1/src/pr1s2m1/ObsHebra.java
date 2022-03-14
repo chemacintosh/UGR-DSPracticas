@@ -17,6 +17,10 @@ public class ObsHebra extends Observable{
 
     private double temperatura;
 
+    public double getTemp(){
+        return temperatura;
+    }
+    
     public ObsHebra(){
         super();
     }
