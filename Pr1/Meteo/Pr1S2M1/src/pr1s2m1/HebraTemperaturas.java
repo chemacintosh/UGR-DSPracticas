@@ -5,40 +5,36 @@
 package pr1s2m1;
 
 import java.lang.Thread;
+import java.util.ArrayList;
 import java.util.Observable;
 
 /**
  *
  * @author chemit
  */
-public class HebraTemperaturas extends Thread{
+public class HebraTemperaturas extends JFrame implements runnable{
     
-    private ObsHebra TempObservable;
-    private double temperaturaMin, temperaturaMax;
+    private ArrayList<Double> temperaturas;
+    private ObsHebra observable;
     
-    public HebraTemperaturas(ObsHebra obs){
-        TempObservable = obs;
-        temperaturaMin = TempObservable.getMin();
-        temperaturaMax = TempObservable.getMax();
-    }
-    
-    public Observable getObservable(){
-        return TempObservable;
+    public HebraTemperaturas(ObsHebra ob){
+        temperaturas = new ArrayList<Double>();
+        observable = ob;
+        temperaturas.add(10.2);
+        temperaturas.add(11.2);
+        temperaturas.add(12.2);
+        temperaturas.add(13.2);
+        temperaturas.add(14.2);
+        temperaturas.add(15.2);
+        temperaturas.add(16.2);
+        temperaturas.add(17.2);
+        temperaturas.add(18.2);
     }
     
     @Override
     public void run(){
-        
-        
-        double[] temperatura;
-        temperatura = new double[7];
-        
-
-        for(int i= 0; i<7; i++){
-            temperatura[i] = Math.random()*((temperaturaMax-temperaturaMin+1)+temperaturaMin);
+        for(Double temperatura: temperaturas){
+            observable.aniadeTemperatura(temperatura);
         }
-        System.out.println(temperatura[1]);
-        
-        TempObservable.setValor(temperatura);
     }
 }

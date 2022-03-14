@@ -15,36 +15,18 @@ import java.util.Arrays;
  */
 public class ObsHebra extends Observable{
 
-    private double[] temperatura;
-    private double tempMin, tempMax;
+    private double temperatura;
 
-    public ObsHebra(double tempMini, double tempMaxi){
-        tempMin = tempMini;
-        tempMax = tempMaxi;
-        temperatura = new double[]{10,10,10,10,10,10,10};
+    public ObsHebra(){
+        super();
     }
-
-    public void setValor(double[] nuevastemp){
-        for(int i = 0; i<7; i++){
-            temperatura[i] = nuevastemp[i];
-        }
-
+    
+    public void aniadeTemperatura (double nuevaTemperatura){
+        temperatura = nuevaTemperatura;
         setChanged();
-        notifyObservers();
-    }
-
-    public double[] getValor(){
-        return temperatura;
+        notifyObservers(temperatura);
     }
     
-    public double getMin(){
-        return tempMin;
-    }
     
-    public double getMax(){
-        return tempMax;
-    }
-
-
     
 };
