@@ -7,12 +7,13 @@ package pr1s2m1;
 import java.lang.Thread;
 import java.util.ArrayList;
 import java.util.Observable;
+import javax.swing.JFrame;
 
 /**
  *
  * @author chemit
  */
-public class HebraTemperaturas extends JFrame implements runnable{
+public class HebraTemperaturas extends JFrame implements Runnable{
     
     private ArrayList<Double> temperaturas;
     private ObsHebra observable;
