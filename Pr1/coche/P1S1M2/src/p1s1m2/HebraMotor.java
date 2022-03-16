@@ -10,11 +10,16 @@ package p1s1m2;
  */
 class HebraMotor extends Thread{
 
-public HebraMotor(){
-
-    while(true){
+    private CalcularVelocidad calc_velocidad = new CalcularVelocidad();
+    private RepercutirRozamiento rep_rozamiento = new RepercutirRozamiento();
     
-    }
+    
+    @Override
+    public void run(){
+
+        while(true){
+            System.out.println("hola");
+        }
 }
 
 

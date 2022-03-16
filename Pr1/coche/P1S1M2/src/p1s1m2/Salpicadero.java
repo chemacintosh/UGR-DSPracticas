@@ -12,13 +12,15 @@ import java.awt.Color;
  */
 public class Salpicadero extends javax.swing.JFrame {
         
-    EstadoMotor estadoMotor;
-
+    EstadoMotor estadoMotor = new EstadoMotor();
+    HebraMotor hebra = new HebraMotor();
     /**
      * Creates new form Frame1
      */
     public Salpicadero() {
+        
         initComponents();
+        this.setSize(350, 250);
     }
 
     public void peticionFiltros(int n_filtro){
@@ -50,14 +52,14 @@ public class Salpicadero extends javax.swing.JFrame {
         Frenar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("mandos");
+        setTitle("Salpicadero");
         setPreferredSize(new java.awt.Dimension(400, 150));
 
         Mandos.setLayout(new java.awt.BorderLayout());
 
         Salpica.setLayout(new java.awt.BorderLayout());
 
-        Velocimetro.setLayout(new java.awt.GridLayout());
+        Velocimetro.setLayout(new java.awt.GridLayout(1, 0));
 
         kmh.setText("0");
         kmh.setBorder(javax.swing.BorderFactory.createTitledBorder("Km/h"));
@@ -77,7 +79,7 @@ public class Salpicadero extends javax.swing.JFrame {
 
         Salpica.add(Cuentakilometros, java.awt.BorderLayout.CENTER);
 
-        Cuentarrevoluciones.setLayout(new java.awt.GridLayout());
+        Cuentarrevoluciones.setLayout(new java.awt.GridLayout(1, 0));
 
         RPM.setText("0");
         RPM.setBorder(javax.swing.BorderFactory.createTitledBorder("Km/h"));
@@ -140,12 +142,14 @@ public class Salpicadero extends javax.swing.JFrame {
         if(this.Encender.getText() == "ENCENDER"){
             this.Encender.setText("APAGAR");
             this.Encender.setForeground(Color.RED);
+            estadoMotor.setEstado(3);
         } else {
             this.Encender.setText("ENCENDER");
             this.Encender.setForeground(Color.green);
             this.Acelerar.setSelected(false);
             this.Frenar.setSelected(false);
             this.EstadoMotor.setText("APAGADO");
+            estadoMotor.setEstado(2);
         }
     }//GEN-LAST:event_EncenderActionPerformed
 
@@ -155,9 +159,11 @@ public class Salpicadero extends javax.swing.JFrame {
                 this.Acelerar.setText("Soltar acelerador");
                 this.Acelerar.setForeground(Color.red);
                 this.EstadoMotor.setText("ACELERANDO");
+                estadoMotor.setEstado(0);
             } else {
                 this.Acelerar.setText("ACELERAR");
                 this.Acelerar.setForeground(Color.BLACK);
+                estadoMotor.setEstado(2);
                 //this.EstadoMotor.setText("APAGADO");
             }
         } else {
@@ -170,8 +176,10 @@ public class Salpicadero extends javax.swing.JFrame {
             if(this.Frenar.isSelected()) {
                 this.Frenar.setForeground(Color.red);
                 this.EstadoMotor.setText("FRENANDO");
+                estadoMotor.setEstado(1);
             } else {
                 this.Frenar.setForeground(Color.BLACK);
+                estadoMotor.setEstado(2);
                 //this.EstadoMotor.setText("APAGADO");
             }
         } else {
@@ -206,13 +214,14 @@ public class Salpicadero extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Salpicadero().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

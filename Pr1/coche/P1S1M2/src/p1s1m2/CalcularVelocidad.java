@@ -15,26 +15,25 @@ public class CalcularVelocidad implements Filtro{
 
     @Override
     public double ejecutar(double revoluciones, EstadoMotor estadoMotor){
-        
-    final double MAX = 5000;
-    
-    switch (estadoMotor.getEstado()){
-        case 0:
-            incrementoVelocidad = 100;
-        case 1:
-            incrementoVelocidad = -100;
-        case 2:
-        case 3:
-            incrementoVelocidad = 0;
-    }
-        
-    revoluciones += incrementoVelocidad;
-    if(revoluciones > 5000){
-        revoluciones = 5000;
-    } else if(revoluciones < 0){
-        revoluciones = 0;
-    }
+        final double MAX = 5000;
 
-    return revoluciones;
+        switch (estadoMotor.getEstado()){
+            case 0:
+                incrementoVelocidad = 100;
+            case 1:
+                incrementoVelocidad = -100;
+            case 2:
+            case 3:
+                incrementoVelocidad = 0;
+        }
+
+        revoluciones += incrementoVelocidad;
+        if(revoluciones > 5000){
+            revoluciones = 5000;
+        } else if(revoluciones < 0){
+            revoluciones = 0;
+        }
+
+        return revoluciones;
     }  
 }
