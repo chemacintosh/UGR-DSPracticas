@@ -33,6 +33,8 @@ public class pantallaTemperatura extends javax.swing.JFrame implements Observer{
     public void update(Observable obs, Object obj){
         gradosCentigrados = (double) obj;
         gradosFahrenheit = (gradosCentigrados*9/5)+32;
+        gradosFahrenheit *= Math.pow(10, 2);
+        gradosFahrenheit = Math.round(gradosFahrenheit)/Math.pow(10, 2);
         
         System.out.println("OBSERVABLE pantallaTemperatura: La temperatura es: " + gradosCentigrados + " grados centígrados o " + gradosFahrenheit);
     }

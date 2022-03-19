@@ -3,8 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package pr1s2m1;
+import java.awt.Color;
 import java.math.*;
 import java.util.ArrayList;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -80,6 +88,7 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
         valorF = new javax.swing.JTextField();
         TextoArray = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +153,13 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
 
         jLabel4.setText("Temperatura media en las ultimas 7 semanas");
 
+        jButton1.setText("Bar Chart");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,7 +188,8 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
                     .addComponent(nuevaTemp)
                     .addComponent(jLabel1)
                     .addComponent(BotonCambio)
-                    .addComponent(TextoACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextoACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
@@ -192,16 +209,19 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
                         .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(valorCelsius, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(valorCelsius, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(valorF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TextoACambiar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonCambio)))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(valorF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(BotonCambio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(23, 23, 23))))
         );
 
         pack();
@@ -209,6 +229,8 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
 
     private void nuevaTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaTempActionPerformed
         double tempCandi = Math.random()*50.0;
+        tempCandi *= Math.pow(10, 2);
+        tempCandi = Math.round(tempCandi)/Math.pow(10, 2);
         observable.aniadeTemperatura(tempCandi);
         temperaturas = grafica.getTemp();
         TextoArray.setText(""+temperaturas);
@@ -243,6 +265,32 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
     private void TextoArrayHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_TextoArrayHierarchyChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_TextoArrayHierarchyChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultPieDataset data = new DefaultPieDataset();
+        
+        ArrayList<Double> temperaturas = grafica.getTemp();
+        
+        Integer porcentaje = 100/temperaturas.size();
+        
+        for(Double temperatura: temperaturas){
+            data.setValue(temperatura.toString(), porcentaje);
+        }
+
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createPieChart(
+         "Temperaturas dadas", 
+         data, 
+         true, 
+         true, 
+         false);
+
+        // Mostrar Grafico
+        ChartFrame frame = new ChartFrame("JFreeChart", chart);
+        frame.pack();
+        frame.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,6 +341,7 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
     private javax.swing.JButton BotonCambio;
     private javax.swing.JTextField TextoACambiar;
     private javax.swing.JTextField TextoArray;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
