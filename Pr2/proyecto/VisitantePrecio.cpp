@@ -1,4 +1,5 @@
 #include <iostream>
+#include "ComponenteEquipo.cpp"
 #include "vector"
 
 using namespace std;
