@@ -13,8 +13,14 @@ public class P1S1M2 {
     /**
      * @param args the command line arguments
      */
+    private static HebraMotor hebra;
+    //private static Salpicadero salpi = new Salpicadero();
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+                System.out.println("ey");
+
+        hebra.Hebra();
+        
     }
     
 }

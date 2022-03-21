@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package p1s1m2;
+package p1s1m2_2_0;
 
 import java.awt.Color;
 
@@ -10,38 +10,23 @@ import java.awt.Color;
  *
  * @author USUARIO
  */
-public class Salpicadero extends javax.swing.JFrame implements Runnable{
-        
-    EstadoMotor estadoMotor = new EstadoMotor();
-    HebraMotor hebra = new HebraMotor();
-    public int revoluciones_sal;
+public class Salpicadero extends javax.swing.JFrame{
+    cliente cliente;    
+    EstadoMotor estadoMotor;
+    
     /**
      * Creates new form Frame1
      */
     public Salpicadero() {
-        
         initComponents();
-        this.setSize(350, 250);
-        hebra.Hebra();
-        this.hebra.run();
-        this.run();
-        
+        cliente = new cliente(this);
+        cliente.run();
     }
     
-    public void setRevoluciones(int revos){
-        this.Cuentarrevoluciones.setName(String.valueOf(revos));
+    public void ponRevoluciones(int revos){
+        this.RPM.setText(String.valueOf(revos));
     }
     
-    @Override
-    public void run(){
-        
-        while(true)
-            System.out.println("hola salpicadero");
-    }
-    
-    public void peticionFiltros(int n_filtro){
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,7 +54,6 @@ public class Salpicadero extends javax.swing.JFrame implements Runnable{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Salpicadero");
-        setPreferredSize(new java.awt.Dimension(400, 150));
 
         Mandos.setLayout(new java.awt.BorderLayout());
 
@@ -229,6 +213,8 @@ public class Salpicadero extends javax.swing.JFrame implements Runnable{
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Salpicadero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         
