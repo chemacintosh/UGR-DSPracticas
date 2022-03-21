@@ -10,10 +10,11 @@ import java.awt.Color;
  *
  * @author USUARIO
  */
-public class Salpicadero extends javax.swing.JFrame {
+public class Salpicadero extends javax.swing.JFrame implements Runnable{
         
     EstadoMotor estadoMotor = new EstadoMotor();
     HebraMotor hebra = new HebraMotor();
+    public int revoluciones_sal;
     /**
      * Creates new form Frame1
      */
@@ -21,8 +22,23 @@ public class Salpicadero extends javax.swing.JFrame {
         
         initComponents();
         this.setSize(350, 250);
+        hebra.Hebra();
+        this.hebra.run();
+        this.run();
+        
     }
-
+    
+    public void setRevoluciones(int revos){
+        this.Cuentarrevoluciones.setName(String.valueOf(revos));
+    }
+    
+    @Override
+    public void run(){
+        
+        while(true)
+            System.out.println("hola salpicadero");
+    }
+    
     public void peticionFiltros(int n_filtro){
         
     }
@@ -151,6 +167,7 @@ public class Salpicadero extends javax.swing.JFrame {
             this.EstadoMotor.setText("APAGADO");
             estadoMotor.setEstado(2);
         }
+        //this.hebra.run();
     }//GEN-LAST:event_EncenderActionPerformed
 
     private void AcelerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcelerarActionPerformed
