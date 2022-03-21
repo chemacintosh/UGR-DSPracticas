@@ -5,6 +5,7 @@
 package pr1s2m1;
 import java.math.*;
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -209,12 +210,18 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
 
     private void nuevaTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaTempActionPerformed
         double tempCandi = Math.random()*50.0;
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        //tempCandi = numberFormat.format(tempCandi);
         observable.aniadeTemperatura(tempCandi);
         temperaturas = grafica.getTemp();
         TextoArray.setText(""+temperaturas);
         
         valorCelsius.setText(""+pantalla.getCelsius());
         valorF.setText(""+pantalla.getFahrenheit());
+        
+        
+        
+        grafica.pintarGrafica();
         
     }//GEN-LAST:event_nuevaTempActionPerformed
 
