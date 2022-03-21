@@ -13,6 +13,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -237,6 +238,10 @@ public class HebraTemperatura extends javax.swing.JFrame implements Runnable{
         
         valorCelsius.setText(""+pantalla.getCelsius());
         valorF.setText(""+pantalla.getFahrenheit());
+        
+        
+        
+        grafica.pintarGrafica();
         
     }//GEN-LAST:event_nuevaTempActionPerformed
 

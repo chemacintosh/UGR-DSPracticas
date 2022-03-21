@@ -15,6 +15,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
+import org.jfree.chart.ChartFrame;
 /**
  *
  * @author chemit
@@ -76,10 +77,11 @@ public class graficaTemperatura extends javax.swing.JFrame implements Observer{
         JFreeChart chart = ChartFactory.createXYLineChart("Test Chart",
                 "x", "y", ds, PlotOrientation.VERTICAL, true, true,
                 false);
-
-        ChartPanel cp = new ChartPanel(chart);
-
-        jFrame1.getContentPane().add(cp);
+        
+        ChartFrame frame = new ChartFrame("Temperaturas", chart);
+        frame.setVisible(true);
+        frame.setSize(400,650);
+        
         
     }
 
@@ -167,7 +169,7 @@ public static void main(String args[]) {
         grafica = new graficaTemperatura();
         ob.addObserver(grafica);
         
-        grafica.pintarGrafica();
+        //grafica.pintarGrafica();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
