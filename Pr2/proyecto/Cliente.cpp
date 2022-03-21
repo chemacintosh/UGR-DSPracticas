@@ -1,8 +1,6 @@
 #include <iostream>
 #include "Equipo.cpp"
-#include "Tarjeta.cpp"
-#include "Bus.cpp"
-#include "Disco.cpp"
+#include "ComponenteEquipo.cpp"
 #include "VisitantePrecio.cpp"
 #include "vector"
 
