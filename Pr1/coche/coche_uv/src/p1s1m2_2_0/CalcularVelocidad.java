@@ -39,7 +39,7 @@ public class CalcularVelocidad implements Filtro{
             velocidad = 0;
         }
 
-        System.out.println(velocidad);
+        //System.out.println(velocidad);
         return velocidad;
     }  
 }

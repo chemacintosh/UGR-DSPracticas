@@ -5,6 +5,9 @@
 package p1s1m2_2_0;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /**
  *
@@ -13,6 +16,12 @@ import java.awt.Color;
 public class Salpicadero extends javax.swing.JFrame{
     cliente cliente;    
     EstadoMotor estadoMotor;
+    Timer timer = new Timer(1000, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timer.start();
+            }
+        });
     
     /**
      * Creates new form Frame1
@@ -24,8 +33,9 @@ public class Salpicadero extends javax.swing.JFrame{
         initComponents();
         
         cliente.start();
+        timer.start();
     }
-
+    
     public EstadoMotor getEstadoMotor() {
         return estadoMotor;
     }
@@ -37,9 +47,16 @@ public class Salpicadero extends javax.swing.JFrame{
     public void ejecutar(double revoluciones, EstadoMotor estadoMotor) {
         double v_lineal = 2.0*Math.PI*0.15*revoluciones*(60.0/1000.0);
         double distancia = 0;
+        double distancia_reciente = 0;
         
         kmh.setText(String.valueOf(v_lineal));
         RPM.setText(String.valueOf(revoluciones));
+
+        //La distancia representada en el salpicadero.
+        distancia = v_lineal / timer.getDelay()*3600;
+        distancia_reciente = v_lineal / timer.getDelay()*60;
+        contador_total.setText(String.valueOf(distancia));
+        contador_reciente.setText(String.valueOf(distancia_reciente));
     }
     
 
@@ -98,7 +115,7 @@ public class Salpicadero extends javax.swing.JFrame{
         Cuentarrevoluciones.setLayout(new java.awt.GridLayout(1, 0));
 
         RPM.setText("0");
-        RPM.setBorder(javax.swing.BorderFactory.createTitledBorder("Km/h"));
+        RPM.setBorder(javax.swing.BorderFactory.createTitledBorder("RPM"));
         Cuentarrevoluciones.add(RPM);
 
         Salpica.add(Cuentarrevoluciones, java.awt.BorderLayout.SOUTH);
