@@ -32,3 +32,87 @@ public:
         visit.Visitar(*this);
     }
 };
+
+class Disco : ComponenteEquipo
+{
+public:
+    Disco();
+
+    Disco(double nCosto, string nNombre)
+    {
+        costo = nCosto;
+        nombre = nNombre;
+    }
+
+    void Aceptar(VisitantePrecio pVisit) override
+    {
+        pVisit.Visitar(*this);
+    }
+
+    double getCosto()
+    {
+        return costo;
+    }
+
+    Disco &operator=(ComponenteEquipo &otro)
+    {
+        costo = otro.getCosto();
+        nombre = otro.getNombre();
+    }
+};
+
+class Bus : ComponenteEquipo
+{
+public:
+    Bus();
+
+    Bus(double nCosto, string nNombre)
+    {
+        costo = nCosto;
+        nombre = nNombre;
+    }
+
+    void Aceptar(VisitantePrecio pVisit) override
+    {
+        pVisit.Visitar(*this);
+    }
+
+    double getCosto()
+    {
+        return costo;
+    }
+
+    Bus &operator=(ComponenteEquipo &otro)
+    {
+        costo = otro.getCosto();
+        nombre = otro.getNombre();
+    }
+};
+
+class Tarjeta : ComponenteEquipo
+{
+public:
+    Tarjeta();
+
+    Tarjeta(double nCosto, string nNombre)
+    {
+        costo = nCosto;
+        nombre = nNombre;
+    }
+
+    void Aceptar(VisitantePrecio pVisit) override
+    {
+        pVisit.Visitar(*this);
+    }
+
+    double getCosto()
+    {
+        return costo;
+    }
+
+    Tarjeta &operator=(ComponenteEquipo &otro)
+    {
+        costo = otro.getCosto();
+        nombre = otro.getNombre();
+    }
+};
